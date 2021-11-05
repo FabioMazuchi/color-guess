@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cores {
+  display: flex;
+  justify-content: space-around;
+  width: 500px;
+  margin: auto;
+}
+
+.ball {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid;
+}
+
+p {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 25px;
+}
+
+.botao {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  background-color: black;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 17px;
+}
