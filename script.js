@@ -1,6 +1,10 @@
 const p = document.querySelector('#rgb-color');
 const divBalls = document.querySelector('.cores');
 const pAnswer = document.querySelector('#answer');
+const btnReset = document.querySelector('#reset-game');
+const pScore = document.querySelector('#score');
+let score = Number(pScore.innerHTML);
+console.log(typeof score);
 
 const geraRgb = () => {
   const r = Math.trunc(Math.random() * 255);
@@ -18,23 +22,34 @@ const getCorOnBalls = () => {
   p.innerHTML = balls[aleatorio].style.backgroundColor;
 };
 
-const checkAcerto = ({ target }) => {
-  const resp = target.style.backgroundColor;
-  const cor = p.innerHTML;
-
-  if (cor === resp) {
-    pAnswer.innerHTML = 'Acertou!';
-  } else {
-    pAnswer.innerHTML = 'Errou! Tente novamente!';
-  }
-};
-
 const addCoresOnBalls = () => {
   const balls = divBalls.children;
 
   for (let i = 0; i < balls.length; i += 1) {
     balls[i].style.backgroundColor = geraRgb();
     balls[i].addEventListener('click', checkAcerto);
+  }
+};
+
+const resetar = () => {
+  console.log('resetando');
+  addCoresOnBalls();
+  getCorOnBalls();
+  pAnswer.innerHTML = 'Escolha uma cor';
+};
+
+btnReset.addEventListener('click', resetar);
+
+const checkAcerto = ({ target }) => {
+  const resp = target.style.backgroundColor;
+  const cor = p.innerHTML;
+
+  if (cor === resp) {
+    pAnswer.innerHTML = 'Acertou!';
+    score += 3;
+    pScore.innerHTML = score;
+  } else {
+    pAnswer.innerHTML = 'Errou! Tente novamente!';
   }
 };
 
