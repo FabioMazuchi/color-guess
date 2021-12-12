@@ -1,4 +1,6 @@
 const p = document.querySelector('#rgb-color');
+const divBalls = document.querySelector('.cores');
+const pAnswer = document.querySelector('#answer');
 
 const geraRgb = () => {
   const r = Math.trunc(Math.random() * 255);
@@ -7,10 +9,37 @@ const geraRgb = () => {
   return `rgb(${r}, ${g}, ${b})`;
 };
 
-p.innerHTML = geraRgb();
+pAnswer.innerHTML = 'Escolha uma cor';
 
-console.log(geraRgb());
+const getCorOnBalls = () => {
+  const balls = divBalls.children;
+  const aleatorio = Math.trunc(Math.random() * balls.length);
 
+  p.innerHTML = balls[aleatorio].style.backgroundColor;
+};
+
+const checkAcerto = ({ target }) => {
+  const resp = target.style.backgroundColor;
+  const cor = p.innerHTML;
+
+  if (cor === resp) {
+    pAnswer.innerHTML = 'Acertou!';
+  } else {
+    pAnswer.innerHTML = 'Errou! Tente novamente!';
+  }
+};
+
+const addCoresOnBalls = () => {
+  const balls = divBalls.children;
+
+  for (let i = 0; i < balls.length; i += 1) {
+    balls[i].style.backgroundColor = geraRgb();
+    balls[i].addEventListener('click', checkAcerto);
+  }
+};
+
+addCoresOnBalls();
+getCorOnBalls();
 // function gerarCores() {
 //   const cores = {
 //     c1: '',
