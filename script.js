@@ -29,6 +29,7 @@ const checkAcerto = ({ target }) => {
     pAnswer.innerHTML = 'Acertou!';
     score += 3;
     pScore.innerHTML = score;
+    setTimeout(resetar, 2000);
   } else {
     pAnswer.innerHTML = 'Errou! Tente novamente!';
   }
