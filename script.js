@@ -12,7 +12,7 @@ const geraRgb = () => {
   return `rgb(${r}, ${g}, ${b})`;
 };
 
-pAnswer.innerHTML = 'Escolha uma cor';
+pAnswer.innerHTML = 'Escolha uma cor! ☝';
 
 const getCorOnBalls = () => {
   const balls = divBalls.children;
@@ -26,12 +26,16 @@ const checkAcerto = ({ target }) => {
   const cor = p.innerHTML;
 
   if (cor === resp) {
-    pAnswer.innerHTML = 'Acertou!';
+    pAnswer.innerHTML = 'Acertou, parabéns! 😀';
+    pAnswer.classList.add('acertou');
     score += 3;
     pScore.innerHTML = score;
+    divBalls.style.pointerEvents = 'none';
     setTimeout(resetar, 2000);
+    // resetar();
   } else {
-    pAnswer.innerHTML = 'Errou! Tente novamente!';
+    pAnswer.innerHTML = 'Errou, Tente novamente! 😞';
+    pAnswer.classList.add('errou');
   }
 };
 
@@ -48,7 +52,10 @@ const resetar = () => {
   console.log('resetando');
   addCoresOnBalls();
   getCorOnBalls();
-  pAnswer.innerHTML = 'Escolha uma cor';
+  pAnswer.innerHTML = 'Escolha uma cor! ☝';
+  divBalls.style.pointerEvents = 'auto';
+  pAnswer.classList.remove('acertou');
+  pAnswer.classList.remove('errou');
 };
 
 btnReset.addEventListener('click', resetar);
